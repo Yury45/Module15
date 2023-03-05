@@ -15,14 +15,15 @@
             Console.WriteLine(string.Join(" ", allStudents));
         }
 
-        static string[] GetAllStudents(Classroom[] classes)
+        static List<string> GetAllStudents(Classroom[] classes)
         {
             var students = (from c in classes
+                where c != null && c.Students != null
                 from student in c.Students
-                select student).ToArray();
+                where student != null
+                select student).ToList();
 
             return students;
-
         }
 
         public class Classroom
